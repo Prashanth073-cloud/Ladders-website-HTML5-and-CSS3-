@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="http://12.42.204.30:7005/jTable/jquery.jtable.js"></script>
+<script src="http://12.42.204.30:7005/jTable/helpers.js"></script>
+<link href="http://12.42.204.30:7005/jTable/themes/lightcolor/red/jtable.css" rel="stylesheet">
+
+                                                <!-- Do not change the code above -->
+
+<link href="css/ladder.css" rel="stylesheet"> <!-- Modify myStyles.css to add additional styles or add your own stylesheet-->
+
+<title>Ladders</title>                             <!-- Modify title for your application -->
+
+<script>
+	$(document).ready(function() {
+		$('#container1').jtable({
+			title : 'Customer Order Listing',              <!-- Change title for your application -->
+			paging : true,                      <!-- "true" allows paging through the grid -->
+			pageSize : 15,                      <!-- Specify page size -->
+			sorting : true,                     <!-- "true" allows sorting by columns -->
+			defaultSorting : 'model_year DESC', <!-- Default sort column on initial load -->
+			actions : {
+				listAction : 'genJson2.rpgle?jtView=ladder_customer_order_view'  <!-- Change "carsV1" to your view name -->
+			},
+			fields : {                          <!-- Modify the grid components -->
+				customer_name : {
+					title : 'Customer name',
+					width : '15%',
+					list : true
+				},
+				order_date : {
+					title : 'Order Date',
+					width : '20%',
+					list : true
+				},
+				order_id : {
+					title : 'Order ID',
+					width : '10%',
+					list : true
+				},
+				part_code : {
+					title : 'Part Code',
+					width : '20%',
+					list : true,
+				},
+				quantity : {
+					title : 'Quantity',
+					width : '10%',
+					list : true,
+				},
+				description : {
+					title : 'Description',
+					width : '15%',
+					list : true,
+				},
+				order_total : {
+					title : 'Price',
+					width : '10%',
+					list : true,
+					display : function(data) {
+						return formatCurrency(data.record.order_total)
+					},
+				}
+			}
+		});                                     <!-- Do not change the code below -->
+		$('#container1').jtable('load');
+	});
+</script>
+</head>
+
+<body>
+  <div id="container1">
+	<div class="titleContainer">
+		<p class="title" style="text-align:center; font-size:2em ;color:#b11515">ClimbHigh Ladders</p>
+	</div>
+	
+  </div>
+</body>
+</html>
